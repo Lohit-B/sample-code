@@ -26,16 +26,12 @@ def pprint(root):
 
 def findIndex(root, i, j):
 	if root.l != None and root.l.i <= i and root.l.j >= j:
-		print 'l'
 		return findIndex(root.l, i, j)
 	elif root.r != None and root.r.i <= i and root.r.j >= j:
-		print 'r'
 		return findIndex(root.r, i , j)
 	elif root != None and root.i <= i and root.j >= j:
-		print 'root'
 		return root
 	else:
-		print 'None'
 		return None
 				
 def main(argv):
@@ -57,8 +53,7 @@ def main(argv):
 	
 	root = createTree(data, 1, len(data))
 	node = findIndex(root, i, j)
-	print i, node.i, j , node.j
-	print node.d[i-node.i:j+1-node.i], node.d
+	print node.d[i-node.i:j+1-node.i]
 
 if __name__ == '__main__':
 	 main(sys.argv[1:])
