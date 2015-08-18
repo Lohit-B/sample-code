@@ -1,13 +1,11 @@
 caterpilars = [2,3, 5, 7]
-numOfLeaves = 10
 
 def isPrime(n):
-	if (n ==1): return False
-	for i in range(2, n/2+1):
-		if (n%i==0):
-			return False
+	if (n ==1 or n % 2 == 0 or n%3 == 0): return False
+	k = 1
+	while 6*k+1 < n**(1/2):
+		if(n%6*k-1==0 or  6*k+1 == 0): return False
 	return True
-
 
 def getDivisor(cp, prime, primeFactors):
 	if cp ==1: return primeFactors, cp
@@ -28,7 +26,7 @@ def getPrimeFactors(n):
 	primes = [2, 3]
 	for prime in primes:
 		primeFactors, n = getDivisor(n, prime, primeFactors)
-	
+
 	if (isPrime(n)):
 		primeFactors.append(n)
 		return primeFactors
@@ -43,15 +41,11 @@ def getPrimeFactors(n):
 	
 	return primeFactors
 
-
-
 def getCPFactors(arrCP):
 	factors = []
 	for cp in arrCP:
 		factors = factors + getPrimeFactors(cp)
-
 	return list(set(factors))
-
 
 def errorCor(initNum, primes, n): # sorted list of primes
 	count = 0
@@ -66,13 +60,10 @@ def getEatenLeaves(primes, n):
 	for prime in primes:
 		numOfLeavesEatenByPrime = n/prime
 		countEaten += numOfLeavesEatenByPrime
-		
 		for p in primes:
 			if p <= prime:
 				continue
 			countEaten -= (numOfLeavesEatenByPrime/p -  errorCor(p, primes[primes.index(p)+1:], numOfLeavesEatenByPrime))
-
 	return countEaten
 
-print getEatenLeaves(getCPFactors(caterpilars), 20)
-
+print getEatenLeaves(getCPFactors(caterpilars), 50)
