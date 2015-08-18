@@ -4,7 +4,7 @@ def isPrime(n):
 	if (n ==1 or n % 2 == 0 or n%3 == 0): return False
 	k = 1
 	while 6*k+1 < n**(1/2):
-		if(n%6*k-1==0 or  6*k+1 == 0): return False
+		if(n % 6*k-1 == 0 or n % 6*k+1 == 0): return False
 	return True
 
 def getDivisor(cp, prime, primeFactors):
